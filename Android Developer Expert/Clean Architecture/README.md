@@ -1,0 +1,4 @@
+# Clean Architecture - Android Developer Expert
+### Berbagai macam design pattern yang biasa digunakan dalam pengembangan aplikasi Android seperti Clean Architecture untuk membangun aplikasi yang tertata dan mudah dipelihara.
+Latihan projects pada repository ini ada hasil translate **Kotlin** ke **Java** dari repository original **[Dicoding Academy](https://github.com/dicodingacademy/a165-android-expert-project "Dicoding Academy")**.
+Kamu bisa mempelajari modul ini pada kelas [Menjadi Android Developer Expert di Dicoding Indonesia](https://www.dicoding.com/academies/165/ "Ikuti Kelas Menjadi Android Developer Expert di Dicoding Indonesia")
