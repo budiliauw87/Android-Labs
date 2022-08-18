@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_favorite">Favorite</string>
+    <string name="menu_map">Map</string>
+    <string name="image_description">Image</string>
+    <string name="text_primary">Sample of title text</string>
+    <string name="text_subtitle">Sample of subtitle text</string>
+    <string name="something_wrong">Oops.. something went wrong</string>
+    <string name="no_data">Empty data</string>
+</resources>
