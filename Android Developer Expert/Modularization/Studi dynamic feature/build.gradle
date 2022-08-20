@@ -1,0 +1,34 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.androidx_junit_version ="1.1.3"
+    ext.junit_version ="4.13.2"
+    ext.espresso_core_version ="3.4.0"
+    ext.appcompat_version="1.5.0"
+    ext.material_version="1.6.1"
+    ext.contraint_version ="2.1.4"
+    ext.prefrence_version ="1.2.0"
+    ext.swiperefresh_version="1.1.0"
+    ext.paging_version = "3.2.0-alpha01"
+    ext.room_version = "2.5.0-alpha02"
+    ext.hilt_version = "2.43.2"
+    ext.retrofit_version = "2.9.0"
+    ext.reactivex_version = "2.2.19"
+    ext.reactivex_android_version = "2.1.1"
+    ext.reactivestreams_version ="2.5.1"
+    ext.glide_version ="4.13.2"
+    ext.lifecycle_version ="2.4.1"
+    ext.navigation_version ="2.4.2"
+    ext.dagger_version = "2.43.2"
+    ext.multidex_version = "2.0.1"
+    ext.hilt_version = "2.43.2"
+}
+plugins {
+    id 'com.android.application' version '7.2.1' apply false
+    id 'com.android.library' version '7.2.1' apply false
+    id 'com.google.dagger.hilt.android' version '2.43.2' apply false
+    id 'com.android.dynamic-feature' version '7.2.1' apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
