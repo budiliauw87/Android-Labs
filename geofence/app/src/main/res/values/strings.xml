@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GeoFencingManual</string>
+    <string name="your_location" translatable="false">Your Location : </string>
+    <string name="invalid" translatable="false">Invalid</string>
+    <string name="valid" translatable="false">Valid</string>
+    <string name="err_ops">Opss, Error !!</string>
+    <string name="please_enable_gps">Please Enable GPS, required using this app!!</string>
+    <string name="error_logo">Error Logo</string>
+    <string name="check_geofencing">Check GeoFence</string>
+</resources>
