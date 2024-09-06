@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'navigation.dart';
+import 'package:stater_flutter/utils/Material_theme.dart';
+import 'navigation/navigation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   ThemeMode themeMode = ThemeMode.light;
-
   setThemeMode(bool isDark) {
     setState(() {
       themeMode = isDark ? ThemeMode.dark : ThemeMode.light;

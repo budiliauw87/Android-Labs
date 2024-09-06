@@ -12,11 +12,11 @@ class DetailScreen extends StatelessWidget {
         title: Text(title),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            Text(
               'Hello, this Detail Screen:',
             ),
           ],

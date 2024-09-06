@@ -4,11 +4,11 @@ class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const Text(
+          Text(
             'Hello, this Favorite Screen:',
           ),
         ],
