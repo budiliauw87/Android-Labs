@@ -9,7 +9,7 @@ class FavoriteScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Hello, this Favorite Screen:',
+            'Feature comming soon :',
           ),
         ],
       ),

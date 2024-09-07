@@ -60,7 +60,7 @@ class _NavigationApp extends State<NavigationApp> {
             NavigationDestination(
               selectedIcon: Icon(Icons.apps),
               icon: Icon(Icons.apps_outlined),
-              label: 'Component',
+              label: 'Favorite',
             ),
             NavigationDestination(
               selectedIcon: Icon(Icons.info),
