@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stater_flutter/utils/Material_theme.dart';
 import 'navigation/navigation.dart';
 
 void main() {

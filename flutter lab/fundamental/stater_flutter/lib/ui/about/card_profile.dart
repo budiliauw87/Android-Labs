@@ -13,7 +13,7 @@ class CardProfile extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 48,
-                backgroundImage: AssetImage('images/dummy_profile.jpg'),
+                backgroundImage: AssetImage('assets/images/dummy_profile.jpg'),
               ),
               Expanded(
                 child: Padding(

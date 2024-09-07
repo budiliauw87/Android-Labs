@@ -18,31 +18,87 @@ class AboutScreen extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
           ),
-          for (var i = 0; i < 5; i++) ...[
-            Row(
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            child: Row(
               children: [
                 Icon(
                   Icons.call_outlined,
                   color: Theme.of(context).hintColor,
-                  size: 30.0,
                 ),
-                Expanded(
+                const Expanded(
                   child: Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      '0821112233456',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).hintColor,
-                      ),
+                      'Phone',
                     ),
                   ),
                 ),
-                ElevatedButton(onPressed: () {}, child: Text('Call'))
+                Text(
+                  '082111223344',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).hintColor,
+                  ),
+                ),
               ],
             ),
-          ]
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.mail_outline,
+                  color: Theme.of(context).hintColor,
+                ),
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'Email',
+                    ),
+                  ),
+                ),
+                Text(
+                  'johndoe@example.com',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).hintColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.web,
+                  color: Theme.of(context).hintColor,
+                ),
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'Website',
+                    ),
+                  ),
+                ),
+                Text(
+                  'www.example.com',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).hintColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
