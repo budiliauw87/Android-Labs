@@ -2,15 +2,22 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:stater_flutter/repository/model/restaurant_item.dart';
 import 'package:stater_flutter/ui/home/restaurant_item.dart';
 
-parseRestaurant(String? json) {
+List<RestaurantItem> parseRestaurant(String? json) {
   if (json == null) {
-    return;
+    return [];
   }
 
   final parsed = jsonDecode(json);
-  Logger().log(Level.debug, parsed['restaurants'].toString());
+  final List parsedList = parsed['restaurants'];
+  return parsedList.map((json) => RestaurantItem.fromJson(json)).toList();
+  // List<RestaurantItem> restaurants =
+  //     parsedList.map((json) => RestaurantItem.fromJson(json)).toList();
+  // if (restaurants != null) {
+  //   Logger().log(Level.debug, 'total : ${restaurants.length}');
+  // }
 }
 
 class HomeScreen extends StatelessWidget {
@@ -32,13 +39,12 @@ class HomeScreen extends StatelessWidget {
         future: DefaultAssetBundle.of(context)
             .loadString('assets/local_restaurant.json'),
         builder: (context, snapshot) {
-          parseRestaurant(snapshot.data);
-
+          List<RestaurantItem> list = parseRestaurant(snapshot.data);
           return ListView.builder(
               padding: const EdgeInsets.all(8),
-              itemCount: 5,
+              itemCount: list.length,
               itemBuilder: (BuildContext context, int index) {
-                return const RestauranItem();
+                return RestauranItem(restaurant: list[index]);
               });
         },
       ),
