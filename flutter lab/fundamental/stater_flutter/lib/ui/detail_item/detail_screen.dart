@@ -89,7 +89,10 @@ class DetailScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(restaurant.description),
+              child: Text(
+                restaurant.description,
+                textAlign: TextAlign.justify,
+              ),
             ),
             const Padding(
               padding: EdgeInsets.only(left: 16.0, right: 16.0),
