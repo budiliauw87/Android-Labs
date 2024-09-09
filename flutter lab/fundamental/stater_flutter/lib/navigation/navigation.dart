@@ -37,14 +37,6 @@ class _NavigationApp extends State<NavigationApp> {
               tooltip: 'theme Mode',
               onPressed: _onToggleTheme,
             ),
-            IconButton(
-              icon: const Icon(Icons.settings),
-              tooltip: 'Theme Style',
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('This is a snackbar')));
-              },
-            ),
           ],
         ),
         bottomNavigationBar: NavigationBar(

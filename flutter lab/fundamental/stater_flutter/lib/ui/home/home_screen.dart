@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:stater_flutter/repository/model/restaurant_item.dart';
 import 'package:stater_flutter/ui/home/restaurant_item.dart';
 
@@ -13,11 +12,6 @@ List<RestaurantItem> parseRestaurant(String? json) {
   final parsed = jsonDecode(json);
   final List parsedList = parsed['restaurants'];
   return parsedList.map((json) => RestaurantItem.fromJson(json)).toList();
-  // List<RestaurantItem> restaurants =
-  //     parsedList.map((json) => RestaurantItem.fromJson(json)).toList();
-  // if (restaurants != null) {
-  //   Logger().log(Level.debug, 'total : ${restaurants.length}');
-  // }
 }
 
 class HomeScreen extends StatelessWidget {
