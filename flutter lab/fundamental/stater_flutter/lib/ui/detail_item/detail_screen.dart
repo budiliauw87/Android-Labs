@@ -17,6 +17,7 @@ class DetailScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Image.network(
@@ -26,7 +27,8 @@ class DetailScreen extends StatelessWidget {
               height: 200,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 8.0, right: 16.0),
+              padding:
+                  const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
               child: Text(
                 restaurant.name,
                 style: const TextStyle(
@@ -38,7 +40,7 @@ class DetailScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
               child: Row(
                 children: [
                   const Icon(
@@ -50,7 +52,7 @@ class DetailScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: Text(
-                        restaurant.city,
+                        'Location at ${restaurant.city}',
                       ),
                     ),
                   ),
@@ -66,9 +68,89 @@ class DetailScreen extends StatelessWidget {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.star,
+                    size: 20.0,
+                    semanticLabel: 'Ratings Restaurants',
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: Text(
+                        '${restaurant.rating} Rating',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(restaurant.description),
             ),
+            const Padding(
+              padding: EdgeInsets.only(left: 16.0, right: 16.0),
+              child: Text(
+                'Foods',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Roboto',
+                  letterSpacing: 0.5,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: SizedBox(
+                height: 80.0,
+                child: ListView.builder(
+                  physics: const ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: restaurant.foods.length,
+                  itemBuilder: (BuildContext context, int index) => Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: InputChip(
+                        onPressed: () {},
+                        label: Text(restaurant.foods[index].name)),
+                  ),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 16.0, right: 16.0),
+              child: Text(
+                'Drinks',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Roboto',
+                  letterSpacing: 0.5,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: SizedBox(
+                height: 80.0,
+                child: ListView.builder(
+                  physics: const ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: restaurant.drinks.length,
+                  itemBuilder: (BuildContext context, int index) => Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: InputChip(
+                        onPressed: () {},
+                        label: Text(restaurant.drinks[index].name)),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
