@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stater_flutter/repository/provider/global_provider.dart';
 import 'navigation/navigation.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
-  // runApp(const MyApp());
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
     ChangeNotifierProvider(
       create: (context) => GlobalProvider(),
       child: const MyApp(),
     ),
   );
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatefulWidget {
