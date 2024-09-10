@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget {
       floatHeaderSlivers: true,
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) => [
         SliverAppBar(
+            backgroundColor: const Color(0xFFE1DFDF),
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset('assets/images/banner.jpg',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stater_flutter/repository/model/restaurant_item.dart';
 import 'package:stater_flutter/ui/detail_item/detail_screen.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class RestauranItem extends StatelessWidget {
   const RestauranItem({super.key, required this.restaurant});
@@ -19,10 +20,11 @@ class RestauranItem extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
-                  restaurant.pictureId,
-                  height: 80.0,
-                  width: 100.0,
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: restaurant.pictureId,
+                  width: 100,
+                  height: 80,
                   fit: BoxFit.cover,
                 ),
               ),
