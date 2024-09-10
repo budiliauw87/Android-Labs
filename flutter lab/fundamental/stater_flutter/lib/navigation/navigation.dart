@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stater_flutter/repository/provider/global_provider.dart';
 import 'package:stater_flutter/ui/about/about_screen.dart';
 import 'package:stater_flutter/ui/favorite/favorite_screen.dart';
 import 'package:stater_flutter/ui/home/home_screen.dart';
 
 class NavigationApp extends StatefulWidget {
-  const NavigationApp({super.key, required this.onToggleTheme});
-  final Function(bool isDark) onToggleTheme;
+  const NavigationApp({super.key, required this.themeMode});
+  final ThemeMode themeMode;
   @override
   State<NavigationApp> createState() => _NavigationApp();
 }
 
 class _NavigationApp extends State<NavigationApp> {
-  ThemeMode themeMode = ThemeMode.light;
-  int indexPage = 0;
-  var title = 'Light Mode';
-  bool isDark = false;
-  void _onToggleTheme() {
-    setState(() {
-      isDark = !isDark;
-      title = isDark ? 'Dark Mode' : 'Light Mode';
-      widget.onToggleTheme(isDark);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    int indexPage = context.watch<GlobalProvider>().positionNavigation;
+    final bool isDark = (widget.themeMode == ThemeMode.dark);
+    var title = isDark ? 'Dark Mode' : 'Light Mode';
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -35,13 +28,16 @@ class _NavigationApp extends State<NavigationApp> {
                   ? const Icon(Icons.light_mode)
                   : const Icon(Icons.dark_mode),
               tooltip: 'theme Mode',
-              onPressed: _onToggleTheme,
+              // onPressed: onToggleTheme,
+              onPressed: () => context
+                  .read<GlobalProvider>()
+                  .setThemeMode(widget.themeMode == ThemeMode.dark),
             ),
           ],
         ),
         bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) =>
-              {setState(() => indexPage = index)},
+              context.read<GlobalProvider>().setIndexNavigation(index),
           selectedIndex: indexPage,
           destinations: const <Widget>[
             NavigationDestination(

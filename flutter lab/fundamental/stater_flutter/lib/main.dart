@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stater_flutter/repository/provider/global_provider.dart';
 import 'navigation/navigation.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => GlobalProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -12,24 +20,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode themeMode = ThemeMode.light;
-  setThemeMode(bool isDark) {
-    setState(() {
-      themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final ThemeMode themeMode = context.watch<GlobalProvider>().themeMode;
     return MaterialApp(
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       darkTheme: ThemeData.dark(),
+      // themeMode: themeMode,
       themeMode: themeMode,
       home: NavigationApp(
-        onToggleTheme: setThemeMode,
+        themeMode: themeMode,
       ),
     );
   }
