@@ -4,7 +4,6 @@ import 'package:stater_flutter/navigation/route_utils.dart';
 import 'package:stater_flutter/repository/provider/global_provider.dart';
 import 'package:stater_flutter/ui/about/about_screen.dart';
 import 'package:stater_flutter/ui/error/error_screen.dart';
-// import 'package:stater_flutter/ui/favorite/favorite_screen.dart';
 import 'package:stater_flutter/ui/home/home_screen.dart';
 
 class NavigationApp extends StatefulWidget {
@@ -67,9 +66,8 @@ class _NavigationApp extends State<NavigationApp> {
         body: <Widget>[
           /// Home page
           const HomeScreen(),
-          ErrorScreen(
+          const ErrorScreen(
             errorMessage: 'Something when wrong!!',
-            reloadPressed: () {},
           ),
           const AboutScreen(),
         ][indexPage]);

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+import 'package:stater_flutter/repository/model/restaurant_item.dart';
 
 class DataSource {
   final String baseUrl = 'https://restaurant-api.dicoding.dev/';
@@ -18,5 +21,15 @@ class DataSource {
   Future<http.Response> addReviews(String query) {
     return http.post(Uri.parse('${baseUrl}review'),
         body: {'name': 'doodle', 'color': 'blue'});
+  }
+
+  List<RestaurantItem> parseRestaurant(String? json) {
+    if (json == null) {
+      return [];
+    }
+
+    final parsed = jsonDecode(json);
+    final List parsedList = parsed['restaurants'];
+    return parsedList.map((json) => RestaurantItem.fromJson(json)).toList();
   }
 }

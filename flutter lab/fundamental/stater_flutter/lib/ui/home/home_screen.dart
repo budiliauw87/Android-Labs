@@ -1,18 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:stater_flutter/repository/data_source.dart';
 import 'package:stater_flutter/repository/model/restaurant_item.dart';
-import 'package:stater_flutter/ui/home/restaurant_item.dart';
-
-List<RestaurantItem> parseRestaurant(String? json) {
-  if (json == null) {
-    return [];
-  }
-
-  final parsed = jsonDecode(json);
-  final List parsedList = parsed['restaurants'];
-  return parsedList.map((json) => RestaurantItem.fromJson(json)).toList();
-}
+import 'package:stater_flutter/ui/common/restaurant_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -34,7 +25,8 @@ class HomeScreen extends StatelessWidget {
         future: DefaultAssetBundle.of(context)
             .loadString('assets/local_restaurant.json'),
         builder: (context, snapshot) {
-          List<RestaurantItem> list = parseRestaurant(snapshot.data);
+          List<RestaurantItem> list =
+              DataSource().parseRestaurant(snapshot.data);
           return ListView.builder(
               padding: const EdgeInsets.all(8),
               itemCount: list.length,

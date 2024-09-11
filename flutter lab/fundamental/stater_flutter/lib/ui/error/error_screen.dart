@@ -4,10 +4,9 @@ class ErrorScreen extends StatelessWidget {
   const ErrorScreen({
     super.key,
     required this.errorMessage,
-    required this.reloadPressed,
   });
   final String errorMessage;
-  final Function reloadPressed;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -30,7 +29,7 @@ class ErrorScreen extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: () => reloadPressed,
+            onPressed: () => {},
             child: const Text('Try again'),
           ),
         ],
