@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stater_flutter/navigation/route_utils.dart';
 import 'package:stater_flutter/repository/model/restaurant_item.dart';
-import 'package:stater_flutter/ui/detail_item/detail_screen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class RestauranItem extends StatelessWidget {
@@ -11,21 +11,21 @@ class RestauranItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(_routeToDetail(restaurant));
+        Navigator.of(context).push(RouteUtils().navigateToScreen(restaurant));
       },
       child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
-            // crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: FadeInImage.memoryNetwork(
                   placeholder: kTransparentImage,
                   image: restaurant.pictureId,
-                  width: 100,
-                  height: 80,
                   fit: BoxFit.cover,
+                  width: 120,
+                  height: 100,
                 ),
               ),
               Expanded(
@@ -79,23 +79,23 @@ class RestauranItem extends StatelessWidget {
   }
 }
 
-Route _routeToDetail(RestaurantItem restaurant) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => DetailScreen(
-      title: 'Detail Page',
-      restaurant: restaurant,
-    ),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.0, 0.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
+// Route _routeToDetail(RestaurantItem restaurant) {
+//   return PageRouteBuilder(
+//     pageBuilder: (context, animation, secondaryAnimation) => DetailScreen(
+//       title: 'Detail Page',
+//       restaurant: restaurant,
+//     ),
+//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//       const begin = Offset(1.0, 0.0);
+//       const end = Offset.zero;
+//       const curve = Curves.ease;
 
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
-}
+//       return SlideTransition(
+//         position: animation.drive(tween),
+//         child: child,
+//       );
+//     },
+//   );
+// }

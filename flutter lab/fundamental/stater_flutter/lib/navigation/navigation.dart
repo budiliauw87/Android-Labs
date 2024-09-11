@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stater_flutter/navigation/route_utils.dart';
 import 'package:stater_flutter/repository/provider/global_provider.dart';
 import 'package:stater_flutter/ui/about/about_screen.dart';
-import 'package:stater_flutter/ui/favorite/favorite_screen.dart';
+import 'package:stater_flutter/ui/error/error_screen.dart';
+// import 'package:stater_flutter/ui/favorite/favorite_screen.dart';
 import 'package:stater_flutter/ui/home/home_screen.dart';
 
 class NavigationApp extends StatefulWidget {
@@ -15,7 +17,7 @@ class NavigationApp extends StatefulWidget {
 class _NavigationApp extends State<NavigationApp> {
   @override
   Widget build(BuildContext context) {
-    int indexPage = context.watch<GlobalProvider>().positionNavigation;
+    int indexPage = context.read<GlobalProvider>().positionNavigation;
     final bool isDark = (widget.themeMode == ThemeMode.dark);
     var title = isDark ? 'Dark Mode' : 'Light Mode';
     return Scaffold(
@@ -23,6 +25,11 @@ class _NavigationApp extends State<NavigationApp> {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(title),
           actions: [
+            IconButton(
+                icon: const Icon(Icons.search),
+                tooltip: 'find restaurats',
+                onPressed: () => Navigator.of(context)
+                    .push(RouteUtils().navigateToScreen(null))),
             IconButton(
               icon: isDark
                   ? const Icon(Icons.light_mode)
@@ -60,7 +67,10 @@ class _NavigationApp extends State<NavigationApp> {
         body: <Widget>[
           /// Home page
           const HomeScreen(),
-          const FavoriteScreen(),
+          ErrorScreen(
+            errorMessage: 'Something when wrong!!',
+            reloadPressed: () {},
+          ),
           const AboutScreen(),
         ][indexPage]);
   }

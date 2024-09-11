@@ -25,18 +25,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    final ThemeMode themeMode = context.watch<GlobalProvider>().themeMode;
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData.dark(),
-      // themeMode: themeMode,
-      themeMode: themeMode,
-      home: NavigationApp(
-        themeMode: themeMode,
-      ),
-    );
+    return Consumer<GlobalProvider>(builder: (context, globalProvider, child) {
+      return MaterialApp(
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData.dark(),
+        // themeMode: themeMode,
+        themeMode: globalProvider.themeMode,
+        home: NavigationApp(
+          themeMode: globalProvider.themeMode,
+        ),
+      );
+    });
   }
 }
