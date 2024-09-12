@@ -24,8 +24,6 @@ class HomeScreen extends StatelessWidget {
         future: DefaultAssetBundle.of(context)
             .loadString('assets/local_restaurant.json'),
         builder: (context, snapshot) {
-          List<RestaurantItem> list =
-              DataSource().parseRestaurant(snapshot.data);
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               return const ErrorScreen(errorMessage: 'No Connection');
@@ -34,6 +32,8 @@ class HomeScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             case ConnectionState.done:
               if (snapshot.hasData) {
+                List<RestaurantItem> list =
+                    DataSource().parseRestaurant(snapshot.data);
                 return ListView.builder(
                     padding: const EdgeInsets.all(8),
                     itemCount: list.length,
