@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:stater_flutter/repository/model/restaurant_item.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen(
-      {super.key, required this.title, required this.restaurant});
+  const DetailScreen({super.key, required this.title, this.restaurant});
   final String title;
-  final RestaurantItem restaurant;
+  final RestaurantItem? restaurant;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class DetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Image.network(
-              restaurant.pictureId,
+              restaurant!.pictureId,
               fit: BoxFit.cover,
               width: MediaQuery.of(context).size.width,
               height: 200,
@@ -30,7 +29,7 @@ class DetailScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
               child: Text(
-                restaurant.name,
+                restaurant!.name,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Roboto',
@@ -52,7 +51,7 @@ class DetailScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: Text(
-                        'Location at ${restaurant.city}',
+                        'Location at ${restaurant!.city}',
                       ),
                     ),
                   ),
@@ -80,7 +79,7 @@ class DetailScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: Text(
-                        '${restaurant.rating} Rating',
+                        '${restaurant!.rating} Rating',
                       ),
                     ),
                   ),
@@ -90,7 +89,7 @@ class DetailScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                restaurant.description,
+                restaurant!.description,
                 textAlign: TextAlign.justify,
               ),
             ),
@@ -114,12 +113,12 @@ class DetailScreen extends StatelessWidget {
                   physics: const ClampingScrollPhysics(),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: restaurant.foods.length,
+                  itemCount: restaurant!.foods.length,
                   itemBuilder: (BuildContext context, int index) => Padding(
                     padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                     child: InputChip(
                         onPressed: () {},
-                        label: Text(restaurant.foods[index].name)),
+                        label: Text(restaurant!.foods[index].name)),
                   ),
                 ),
               ),
@@ -144,12 +143,12 @@ class DetailScreen extends StatelessWidget {
                   physics: const ClampingScrollPhysics(),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: restaurant.drinks.length,
+                  itemCount: restaurant!.drinks.length,
                   itemBuilder: (BuildContext context, int index) => Padding(
                     padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                     child: InputChip(
                         onPressed: () {},
-                        label: Text(restaurant.drinks[index].name)),
+                        label: Text(restaurant!.drinks[index].name)),
                   ),
                 ),
               ),

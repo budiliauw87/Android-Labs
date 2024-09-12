@@ -5,7 +5,7 @@ import 'package:stater_flutter/ui/detail_item/detail_screen.dart';
 import '../ui/search/search_screen.dart';
 
 class RouteUtils {
-  Route navigateToScreen(Object? object) {
+  static Route navigateToScreen(Object? object) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) {
         if (object is RestaurantItem) {

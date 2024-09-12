@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stater_flutter/repository/data_source.dart';
 import 'package:stater_flutter/repository/model/restaurant_item.dart';
-import 'package:stater_flutter/ui/common/restaurant_item.dart';
+import 'package:stater_flutter/ui/common/restaurant_item_screen.dart';
 import 'package:stater_flutter/ui/error/error_screen.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -70,7 +70,7 @@ class _SearchScreen extends State<SearchScreen> {
                           padding: const EdgeInsets.all(8),
                           itemCount: list.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return RestauranItem(restaurant: list[index]);
+                            return RestauranItemScreen(restaurant: list[index]);
                           });
                     }
                 }

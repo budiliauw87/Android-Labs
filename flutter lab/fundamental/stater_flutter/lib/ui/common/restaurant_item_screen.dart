@@ -3,15 +3,16 @@ import 'package:stater_flutter/navigation/route_utils.dart';
 import 'package:stater_flutter/repository/model/restaurant_item.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class RestauranItem extends StatelessWidget {
-  const RestauranItem({super.key, required this.restaurant});
+class RestauranItemScreen extends StatelessWidget {
+  const RestauranItemScreen({super.key, required this.restaurant});
   final RestaurantItem restaurant;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(RouteUtils().navigateToScreen(restaurant));
+        // Navigator.of(context).push(RouteUtils.navigateToScreen(restaurant));
+        Navigator.pushNamed(context, '/detail', arguments: restaurant);
       },
       child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -78,24 +79,3 @@ class RestauranItem extends StatelessWidget {
     );
   }
 }
-
-// Route _routeToDetail(RestaurantItem restaurant) {
-//   return PageRouteBuilder(
-//     pageBuilder: (context, animation, secondaryAnimation) => DetailScreen(
-//       title: 'Detail Page',
-//       restaurant: restaurant,
-//     ),
-//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//       const begin = Offset(1.0, 0.0);
-//       const end = Offset.zero;
-//       const curve = Curves.ease;
-
-//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-//       return SlideTransition(
-//         position: animation.drive(tween),
-//         child: child,
-//       );
-//     },
-//   );
-// }

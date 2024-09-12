@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stater_flutter/repository/model/restaurant_item.dart';
 import 'package:stater_flutter/repository/provider/global_provider.dart';
+import 'package:stater_flutter/ui/detail_item/detail_screen.dart';
+import 'package:stater_flutter/ui/search/search_screen.dart';
 import 'navigation/navigation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -30,13 +33,27 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          }),
         ),
         darkTheme: ThemeData.dark(),
-        // themeMode: themeMode,
         themeMode: globalProvider.themeMode,
-        home: NavigationApp(
-          themeMode: globalProvider.themeMode,
-        ),
+        initialRoute: '/',
+        routes: <String, WidgetBuilder>{
+          '/': (context) => NavigationApp(themeMode: globalProvider.themeMode),
+          '/search': (context) => const SearchScreen(),
+          '/detail': (context) => DetailScreen(
+                title: 'Detail Restaurant',
+                restaurant: ModalRoute.of(context)?.settings.arguments
+                    as RestaurantItem,
+              ),
+        },
+
+        // home: NavigationApp(
+        //   themeMode: globalProvider.themeMode,
+        // ),
       );
     });
   }

@@ -28,7 +28,7 @@ class _NavigationApp extends State<NavigationApp> {
                 icon: const Icon(Icons.search),
                 tooltip: 'find restaurats',
                 onPressed: () => Navigator.of(context)
-                    .push(RouteUtils().navigateToScreen(null))),
+                    .push(RouteUtils.navigateToScreen(null))),
             IconButton(
               icon: isDark
                   ? const Icon(Icons.light_mode)
