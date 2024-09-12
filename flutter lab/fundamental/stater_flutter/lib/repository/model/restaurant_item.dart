@@ -45,3 +45,10 @@ class RestaurantItem {
     );
   }
 }
+
+//result respone from fetch API
+class RestaurantItemResult {
+  final bool status;
+  final String message;
+  RestaurantItemResult({required this.status, required this.message});
+}

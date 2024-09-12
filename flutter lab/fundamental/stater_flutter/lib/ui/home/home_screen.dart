@@ -1,9 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:stater_flutter/repository/data_source.dart';
 import 'package:stater_flutter/repository/model/restaurant_item.dart';
 import 'package:stater_flutter/ui/common/restaurant_item.dart';
+import 'package:stater_flutter/ui/error/error_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,12 +26,23 @@ class HomeScreen extends StatelessWidget {
         builder: (context, snapshot) {
           List<RestaurantItem> list =
               DataSource().parseRestaurant(snapshot.data);
-          return ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: list.length,
-              itemBuilder: (BuildContext context, int index) {
-                return RestauranItem(restaurant: list[index]);
-              });
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return const ErrorScreen(errorMessage: 'No Connection');
+            case ConnectionState.active:
+            case ConnectionState.waiting:
+              return const Center(child: CircularProgressIndicator());
+            case ConnectionState.done:
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    padding: const EdgeInsets.all(8),
+                    itemCount: list.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return RestauranItem(restaurant: list[index]);
+                    });
+              }
+          }
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );
