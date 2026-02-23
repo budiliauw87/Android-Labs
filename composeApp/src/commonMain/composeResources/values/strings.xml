@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KMP Practice</string>
+    <string name="home_label">Home</string>
+    <string name="home_desc">Go to Home Screen</string>
+    <string name="component_label">Component</string>
+    <string name="component_desc">View Component</string>
+    <string name="setting_label">Setting</string>
+    <string name="setting_desc">Manage Setting</string>
+</resources>
