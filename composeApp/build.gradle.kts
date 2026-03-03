@@ -16,7 +16,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -54,6 +54,8 @@ kotlin {
             implementation( libs.multiplatform.navigation)
             implementation( libs.io.coil.kt)
             implementation( libs.io.coil.ktor)
+            implementation( libs.jetbrains.navigation3.ui)
+            implementation( libs.jetbrains.material3.adaptiveNavigation3)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
