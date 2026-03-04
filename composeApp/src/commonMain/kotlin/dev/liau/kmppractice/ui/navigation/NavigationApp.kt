@@ -2,6 +2,7 @@ package dev.liau.kmppractice.ui.navigation
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,65 +10,73 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation3.runtime.NavEntry
+import androidx.lifecycle.compose.dropUnlessResumed
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
-import com.example.compose.onSecondaryContainerLight
+import dev.liau.kmppractice.ui.component.bottomsheet.BottomSheetSceneStrategy
+import kotlinx.serialization.Serializable
 
+@Serializable
 private data object RouteA
-
+@Serializable
 private data class RouteB(val id: String)
-
+@Serializable
 private data object RouteC
 
+@Serializable
+private data object RouteD
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationApp() {
     val backStack = remember { mutableStateListOf<Any>(RouteA) }
-
+    val bottomSheetStrategy = remember { BottomSheetSceneStrategy<Any>() }
     NavDisplay(
         backStack = backStack,
         onBack = {
-            val currentStack = backStack.lastOrNull()
-            println("currentStack: $currentStack")
-            backStack.removeLastOrNull()
+            if (backStack.size > 1) {
+                // Navigate back within the app
+                backStack.removeLast()
+            }
         },
-        entryProvider = { key ->
-            when (key) {
-                is RouteA -> NavEntry(key) {
-                    ContentDummy("Welcome to Nav3") {
-                        Button(onClick = {
-                            backStack.add(RouteB("123"))
-                        }) {
-                            Text("Click to navigate")
-                        }
+        sceneStrategy = bottomSheetStrategy,
+        entryProvider = entryProvider {
+            contentRouteA(backStack)
+            entry<RouteB> {key->
+                ContentDummy(
+                    title="Route id: ${key.id} ",
+                    onNext = {backStack.add(RouteC)}
+
+                ){
+                    Button(onClick = dropUnlessResumed{
+                        if (backStack.size > 1) backStack.removeLast()
+                    }) {
+                        Text("Click to go back")
                     }
+
                 }
-
-                is RouteB -> NavEntry(key) {
-                    ContentDummy(
-                        title="Route id: ${key.id} ",
-                        onNext = {backStack.add(RouteC)}
-
-                    ){
+            }
+            entry<RouteC>{
+                ContentDummy("Route C"){
+                    Column ( horizontalAlignment = Alignment.CenterHorizontally){
                         Button(onClick = {
-                            backStack.removeLastOrNull()
+                            backStack.add(RouteD)
                         }) {
-                            Text("Click to go back")
+                            Text("Bottom Sheet")
                         }
-
-                    }
-                }
-                is RouteC -> NavEntry(key) {
-                    ContentDummy("Route C"){
                         Button(onClick = {
                             backStack.clear()
                             backStack.add(RouteA)
@@ -76,13 +85,45 @@ fun NavigationApp() {
                         }
                     }
                 }
+            }
+            entry<RouteD>(
+                metadata = BottomSheetSceneStrategy.bottomSheet()
+            ) {
+                ContentDummy("Route D"){
+                    Column{
+                        repeat(10){
+                            if( it == 10){
+                                Button(onClick = {
+                                    backStack.removeLastOrNull()
+                                }) {
+                                    Text("Close Bottom Sheet")
+                                }
+                            }
+                            Button(onClick = {
+                                backStack.removeLastOrNull()
+                            }) {
+                                Text("Item $it")
+                            }
 
-                else -> {
-                    error("Unknown route: $key")
+                        }
+
+                    }
                 }
             }
         }
     )
+}
+
+fun EntryProviderScope<Any>.contentRouteA(backStack: SnapshotStateList<Any>) {
+    entry<RouteA> {
+        ContentDummy("Welcome to Nav3") {
+            Button(onClick = {
+                backStack.add(RouteB("123"))
+            }) {
+                Text("Click to navigate")
+            }
+        }
+    }
 }
 
 @Composable
