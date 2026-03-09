@@ -56,6 +56,8 @@ kotlin {
             implementation( libs.io.coil.ktor)
             implementation( libs.jetbrains.navigation3.ui)
             implementation( libs.jetbrains.material3.adaptiveNavigation3)
+            implementation( libs.kotlin.datetime)
+            implementation( libs.ui.back.handler)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

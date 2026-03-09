@@ -25,6 +25,8 @@ multiplatform-navigation = "2.9.2"
 coil-kt = "3.3.0"
 ktor ="3.3.0"
 ktor-client = "3.4.0"
+kotlin-datetime = "0.7.1"
+back-handler = "1.10.1"
 
 
 [libraries]
@@ -60,6 +62,9 @@ jetbrains-lifecycle-viewmodelNavigation3 = { module = "org.jetbrains.androidx.li
 navigation3-browser = { module = "com.github.terrakok:navigation3-browser", version.ref = "compose-multiplatform-navigation3-browser" }
 material-icons = { module ="org.jetbrains.compose.material:material-icons-core", version.ref="materialIcons"}
 material-icons-extended = { module ="org.jetbrains.compose.material:material-icons-extended", version.ref="materialIcons"}
+kotlin-datetime = { module ="org.jetbrains.kotlinx:kotlinx-datetime", version.ref="kotlin-datetime"}
+ui-back-handler = { module = "org.jetbrains.compose.ui:ui-backhandler", version.ref="back-handler"}
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
