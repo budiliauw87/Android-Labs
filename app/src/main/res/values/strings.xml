@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NFC</string>
+    <string name="nfc_tools">NFC TOOLS</string>
+    <string name="nfc_reader">NFC Reader</string>
+    <string name="nfc_emulation">NFC Emulation</string>
+    <string name="please_tab_nfc">Please Tab Card</string>
+    <string name="go_to_setting">Go to Setting</string>
+    <string name="please_enable_nfc">Please enable nfc</string>
+</resources>
