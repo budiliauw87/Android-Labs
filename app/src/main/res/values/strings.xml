@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Biometric example</string>
+    <string name="encrypt_and_save"><![CDATA[Enkripsi & Simpan PIN]]></string>
+    <string name="read_using_biometric">Baca PIN dengan Biometrik</string>
+    <string name="status_placeholder">Status: %1$s</string>
+    <string name="hint_pin">Masukkan PIN (misal: 123456)</string>
+</resources>
